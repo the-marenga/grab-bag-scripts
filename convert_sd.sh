@@ -7,7 +7,7 @@
 dir=$1
 find "$dir" -type f -name "*.png" | parallel '
     img={}
-    outputWebp="${img%.png}_2.webp"
+    outputWebp="${img%.png}.webp"
     cwebp -q 80 "$img" -o "$outputWebp"
     exiftool -TagsFromFile "$img" "-UserComment<Parameters" -comment= -overwrite_original "$outputWebp"
     rm "$img" 
